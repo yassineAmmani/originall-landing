@@ -20,19 +20,19 @@ const theme = createTheme({
     h1: {
         fontFamily: 'Playfair Display, serif',
         '@media (max-width:600px)': {
-        fontSize: '2.5rem',
+        fontSize: '4rem',
       },
     },
     h2: {
         fontFamily: 'Playfair Display, serif',
          '@media (max-width:600px)': {
-        fontSize: '1.5rem',
+        fontSize: '2.5rem',
       },
     },
     h3: {
         fontFamily: 'Playfair Display, serif',
          '@media (max-width:600px)': {
-        fontSize: '1.25rem',
+        fontSize: '1.75rem',
       },
     },
   },
