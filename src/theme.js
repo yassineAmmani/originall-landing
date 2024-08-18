@@ -18,13 +18,22 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Roboto, Arial, sans-serif',
     h1: {
-      fontFamily: 'Playfair Display, serif',
+        fontFamily: 'Playfair Display, serif',
+        '@media (max-width:600px)': {
+        fontSize: '2.5rem',
+      },
     },
     h2: {
-      fontFamily: 'Playfair Display, serif',
+        fontFamily: 'Playfair Display, serif',
+         '@media (max-width:600px)': {
+        fontSize: '1.5rem',
+      },
     },
     h3: {
-      fontFamily: 'Playfair Display, serif',
+        fontFamily: 'Playfair Display, serif',
+         '@media (max-width:600px)': {
+        fontSize: '1.25rem',
+      },
     },
   },
   shape: {
@@ -37,6 +46,15 @@ const theme = createTheme({
           textTransform: 'none',
         },
       },
+    },
+    },
+   breakpoints: {
+    values: {
+      xs: 0, // Extra small devices (phones)
+      sm: 600, // Small devices (tablets)
+      md: 900, // Medium devices (desktops)
+      lg: 1200, // Large devices (large desktops)
+      xl: 1536, // Extra large devices (larger desktops)
     },
   },
 });
