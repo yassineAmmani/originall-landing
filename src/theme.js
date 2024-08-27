@@ -20,7 +20,7 @@ const theme = createTheme({
     h1: {
         fontFamily: 'Playfair Display, serif',
         '@media (max-width:600px)': {
-        fontSize: '4rem',
+        fontSize: '3.5rem',
       },
     },
     h2: {
