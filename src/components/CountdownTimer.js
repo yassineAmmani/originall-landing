@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const CountdownTimer = ({ targetDate }) => {
+  const { t } = useTranslation();
+
   const calculateTimeLeft = () => {
     const difference = +new Date(targetDate) - +new Date();
     let timeLeft = {};
@@ -39,7 +42,7 @@ const CountdownTimer = ({ targetDate }) => {
           {timeLeft[interval]}
         </Typography>
         <Typography variant="subtitle1" component="span">
-          {interval}{" "}
+          {t(`countdown_${interval}`)}{" "}
         </Typography>
       </Box>
     );
@@ -47,7 +50,7 @@ const CountdownTimer = ({ targetDate }) => {
 
   return (
     <Box sx={{ mt: 4 }}>
-      {timerComponents.length ? timerComponents : <Typography variant="h3">Time's up!</Typography>}
+      {timerComponents.length ? timerComponents : <Typography variant="h3">{t('countdown_time_up')}</Typography>}
     </Box>
   );
 };

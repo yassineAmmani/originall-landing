@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, Select, MenuItem, FormControl, InputLabel, Container, Grid } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 
-
 const ContactForm = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,20 +33,20 @@ const ContactForm = () => {
         setSubmissionMessage(getSubmissionMessage(formData.userType));
       }, (error) => {
         console.log(error.text);
-        setSubmissionMessage('An error occurred. Please try again later.');
+        setSubmissionMessage(t('submission_error_message'));
       });
   };
 
   const getSubmissionMessage = (userType) => {
     switch (userType) {
       case 'client':
-        return "Thank you for your interest! We look forward to seeing you at our launch.";
+        return t('submission_client_message');
       case 'seller':
-        return "Thank you for your interest in selling on OriginAll. Our sales team will contact you soon.";
+        return t('submission_seller_message');
       case 'media':
-        return "Thank you for your interest in OriginAll. We'll be in touch with more information shortly.";
+        return t('submission_media_message');
       default:
-        return "Thank you for contacting OriginAll. We'll get back to you soon.";
+        return t('submission_default_message');
     }
   };
 
@@ -53,17 +54,17 @@ const ContactForm = () => {
     <Box id="contact-form" sx={{ py: 8, backgroundColor: 'background.paper' }}>
       <Container maxWidth="md">
         <Typography variant="h2" component="h2" gutterBottom>
-          Stay Connected
+          {t('contact_form_title')}
         </Typography>
         <Typography variant="body1" paragraph>
-          Connect with us, whether you're a client, seller, or media partner.
+          {t('contact_form_description')}
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Name"
+                label={t('form_name_label')}
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
@@ -73,7 +74,7 @@ const ContactForm = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Email Address"
+                label={t('form_email_label')}
                 name="email"
                 type="email"
                 value={formData.email}
@@ -84,7 +85,7 @@ const ContactForm = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Phone Number"
+                label={t('form_phone_label')}
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
@@ -92,16 +93,16 @@ const ContactForm = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel>User Type</InputLabel>
+                <InputLabel>{t('form_user_type_label')}</InputLabel>
                 <Select
                   name="userType"
                   value={formData.userType}
                   onChange={handleChange}
                   required
                 >
-                  <MenuItem value="client">Client</MenuItem>
-                  <MenuItem value="seller">Seller</MenuItem>
-                  <MenuItem value="media">Media/Influencer</MenuItem>
+                  <MenuItem value="client">{t('user_type_client')}</MenuItem>
+                  <MenuItem value="seller">{t('user_type_seller')}</MenuItem>
+                  <MenuItem value="media">{t('user_type_media')}</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -109,15 +110,15 @@ const ContactForm = () => {
             {formData.userType === 'client' && (
               <Grid item xs={12}>
                 <FormControl fullWidth>
-                  <InputLabel>Coupon Type</InputLabel>
+                  <InputLabel>{t('form_coupon_type_label')}</InputLabel>
                   <Select
                     name="couponType"
                     value={formData.couponType}
                     onChange={handleChange}
                     required
                   >
-                    <MenuItem value="$10">$10 Off</MenuItem>
-                    <MenuItem value="20%">20% Off</MenuItem>
+                    <MenuItem value="$10">{t('coupon_type_10')}</MenuItem>
+                    <MenuItem value="20%">{t('coupon_type_20')}</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -127,36 +128,36 @@ const ContactForm = () => {
               <>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel>Seller Type</InputLabel>
+                    <InputLabel>{t('form_seller_type_label')}</InputLabel>
                     <Select
                       name="sellerType"
                       value={formData.sellerType}
                       onChange={handleChange}
                       required
                     >
-                      <MenuItem value="cooperative">Cooperative</MenuItem>
-                      <MenuItem value="individual">Individual Crafter</MenuItem>
-                      <MenuItem value="association">Association</MenuItem>
-                      <MenuItem value="company">Company</MenuItem>
-                      <MenuItem value="amateur">Amateur</MenuItem>
+                      <MenuItem value="cooperative">{t('seller_type_cooperative')}</MenuItem>
+                      <MenuItem value="individual">{t('seller_type_individual')}</MenuItem>
+                      <MenuItem value="association">{t('seller_type_association')}</MenuItem>
+                      <MenuItem value="company">{t('seller_type_company')}</MenuItem>
+                      <MenuItem value="amateur">{t('seller_type_amateur')}</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel>Main Product Category</InputLabel>
+                    <InputLabel>{t('form_product_category_label')}</InputLabel>
                     <Select
                       name="productCategory"
                       value={formData.productCategory}
                       onChange={handleChange}
                       required
                     >
-                      <MenuItem value="household">Household Furnishings</MenuItem>
-                      <MenuItem value="ceramic">Ceramic Sculptures</MenuItem>
-                      <MenuItem value="embroidery">Embroidery</MenuItem>
-                      <MenuItem value="food">Food Products</MenuItem>
-                      <MenuItem value="skincare">Skincare and Herbal Blends</MenuItem>
-                      <MenuItem value="antique">Antique Products</MenuItem>
+                      <MenuItem value="household">{t('product_category_household')}</MenuItem>
+                      <MenuItem value="ceramic">{t('product_category_ceramic')}</MenuItem>
+                      <MenuItem value="embroidery">{t('product_category_embroidery')}</MenuItem>
+                      <MenuItem value="food">{t('product_category_food')}</MenuItem>
+                      <MenuItem value="skincare">{t('product_category_skincare')}</MenuItem>
+                      <MenuItem value="antique">{t('product_category_antique')}</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -168,7 +169,7 @@ const ContactForm = () => {
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
-                    label="Company/Organization (or Independent)"
+                    label={t('form_media_company_label')}
                     name="mediaCompany"
                     value={formData.mediaCompany}
                     onChange={handleChange}
@@ -177,32 +178,32 @@ const ContactForm = () => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel>Media Category</InputLabel>
+                    <InputLabel>{t('form_media_category_label')}</InputLabel>
                     <Select
                       name="mediaCategory"
                       value={formData.mediaCategory}
                       onChange={handleChange}
                       required
                     >
-                      <MenuItem value="economic">Economic</MenuItem>
-                      <MenuItem value="lifestyle">Lifestyle</MenuItem>
-                      <MenuItem value="news">News</MenuItem>
+                      <MenuItem value="economic">{t('media_category_economic')}</MenuItem>
+                      <MenuItem value="lifestyle">{t('media_category_lifestyle')}</MenuItem>
+                      <MenuItem value="news">{t('media_category_news')}</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel>Interest</InputLabel>
+                    <InputLabel>{t('form_media_interest_label')}</InputLabel>
                     <Select
                       name="mediaInterest"
                       value={formData.mediaInterest}
                       onChange={handleChange}
                       required
                     >
-                      <MenuItem value="interview">Schedule Interview</MenuItem>
-                      <MenuItem value="info">More Information</MenuItem>
-                      <MenuItem value="collaborate">Collaboration</MenuItem>
-                      <MenuItem value="article">Write an Article</MenuItem>
+                      <MenuItem value="interview">{t('media_interest_interview')}</MenuItem>
+                      <MenuItem value="info">{t('media_interest_info')}</MenuItem>
+                      <MenuItem value="collaborate">{t('media_interest_collaborate')}</MenuItem>
+                      <MenuItem value="article">{t('media_interest_article')}</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -211,7 +212,7 @@ const ContactForm = () => {
 
             <Grid item xs={12}>
               <Button type="submit" variant="contained" color="primary" size="large">
-                Submit
+                {t('form_submit_button')}
               </Button>
             </Grid>
           </Grid>

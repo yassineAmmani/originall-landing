@@ -1,8 +1,11 @@
 import React from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
 import CountdownTimer from './CountdownTimer';
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -25,10 +28,10 @@ const HeroSection = () => {
     >
       <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1, textAlign: 'center', color: 'white' }}>
         <Typography variant="h1" component="h1" gutterBottom>
-          Celebrating the Art of Original Craftsmanship
+          {t('hero_title')}
         </Typography>
         <Typography variant="h4" component="h2" gutterBottom>
-          OriginAll: A Marketplace for Unique, Handcrafted Products
+          {t('hero_subtitle')}
         </Typography>
         <CountdownTimer targetDate={new Date('2024-09-15')} />
         <Button
@@ -41,7 +44,7 @@ const HeroSection = () => {
             form.scrollIntoView({ behavior: 'smooth' });
           }}
         >
-          Get Your Launch Day Coupon
+          {t('get_coupon_button')}
         </Button>
       </Container>
     </Box>
