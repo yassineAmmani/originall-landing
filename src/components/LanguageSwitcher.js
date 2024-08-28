@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IconButton, Tooltip } from '@mui/material';
 import Flag from 'react-world-flags';
 import { useTranslation } from 'react-i18next';
@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next';
 const styles = {
   container: {
     display: 'flex',
-        alignItems: 'right',
-        justifyContent: 'flex-end',
+    alignItems: 'right',
+    justifyContent: 'flex-end',
     position: 'relative',
     zIndex: 10, // Ensures the component is on top
   },
@@ -37,13 +37,14 @@ const styles = {
   },
 };
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ setDirection }) => {
   const { i18n } = useTranslation();
-  const [selectedLang, setSelectedLang] = useState(i18n.language);
+  const [selectedLang, setSelectedLang] = React.useState(i18n.language);
 
   const changeLanguage = (lng) => {
     setSelectedLang(lng);
     i18n.changeLanguage(lng);
+    setDirection(lng === 'ar' ? 'rtl' : 'ltr');
   };
 
   return (

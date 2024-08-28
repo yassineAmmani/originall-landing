@@ -1,3 +1,7 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt for https://www.originall.org
+
 User-agent: *
 Disallow:
+
+# Sitemap URL
+Sitemap: https://www.originall.org/sitemap.xml
